@@ -20,10 +20,10 @@ Calculator page.
 
 2-Create a new page
 
-Add Custom Html blocks for each part in '''minified.min.html''' or edit CSS and
+Add Custom Html blocks for each part in "'minified.min.html"' or edit CSS and
 edit other codes for an improved version. Important thing is that you need
 to correct URL paths according to your own URL. You need to be sure codes did
-not misadded if you minify your edited codes too. Then add your advertisements
+not misadd if you minify your edited codes too. Then add your advertisements
 between those blocks. Publish the page.
 
 3-Be sure jQuery is not deactivated.
