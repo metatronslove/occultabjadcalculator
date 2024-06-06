@@ -1,3 +1,4 @@
+|File|Description|
 |:----------------|--------------------------------------------------------:|
 |source.html|Extended view to add Custom HTML parts to Wordpress site page|
 |minified.min.html|Partially minified CSS, HTML and JS parts for faster load|
@@ -11,7 +12,7 @@ Calculator page.
 ***Creating the page using these source
 
 1-Copy files
-
+|File|Description|
 |:----------------|--------------------------------------------------------:|
 |keyboard.js|Copy this to a directory under wp-includes|
 |abjad.min.js|Copy this to same directory under wp-includes|
