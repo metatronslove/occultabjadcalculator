@@ -9,7 +9,7 @@
 if you have a WordPress site; you may want to add a copy of Occult Abjad
 Calculator page.
 
-***Creating the page using these source
+***Creating the page using these source***
 
 1-Copy files
 |File|Description|
@@ -30,7 +30,7 @@ between those blocks. Publish the page.
 
 4-Enjoy it, make your visitors enjoy too.
 
-***Special about my JS code
+***Special about my JS code***
 
 It is very easy to make an instant translating to any language using html
 attributes and JavaScript.
