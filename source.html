@@ -1641,6 +1641,7 @@ function translateto(language) {
 	}
 	var posttitle = "";
 	if (language == "turkish") {
+		jQuery('#abjadtextentry').attr('placeholder','Ayraçlarla ayırarak; Arap, İbrani, Türk harfleriyle; Arap ve Hint rakamlarıyla; veri girilebilir');
 		posttitle = "Okült Ebced Hesaplayıcı";
 		replytitle = 'Bir Yorum Ekleyin <small><a rel="nofollow" id="cancel-comment-reply-link" href="' + '/occult-abjad-calculator#respond" style="display:none;">Yanıtı iptal et</a></sma' + 'll>';
 		emailnotes = "E-posta adresiniz yayınlanmayacak.";
@@ -1653,6 +1654,7 @@ function translateto(language) {
 		sendbutton = "Gönder"
 	}
 	if (language == "english") {
+		jQuery('#abjadtextentry').attr('placeholder','Arabic, Hebrew, Turkish letters; Arabic and Indian numbers might be entries seperated by special characters');
 		posttitle = "Occult Abjad Calculator";
 		replytitle = 'Leave a Reply<small><a rel="nofollow" id="cancel-comment-reply-link" href="/occu' + 'lt-abjad-calculator#respond" style="display:none;">Cancel reply</a></small>';
 		emailnotes = "Your email address will not be published.";
@@ -2000,7 +2002,7 @@ function calculations(identity) {
 							elements = processed
 						}
 						if (getSetting('purify') == 'purify') {
-							sum = abjad(saf(elements, 0), getCodeFor('abjad'), shadda)
+							sum = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda)
 						} else {
 							sum = abjad(elements, getCodeFor('abjad'), shadda)
 						}
@@ -2068,12 +2070,12 @@ function calculations(identity) {
 							elements = processed
 						}
 						if (getSetting('purify') == 'purify') {
-							sum = abjad(saf(elements, 0), getCodeFor('abjad'), shadda)
+							sum = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda)
 						} else {
 							sum = abjad(elements, getCodeFor('abjad'), shadda)
 						}
 						if (getSetting('purify') == 'purify') {
-							detailarray = abjad(saf(elements, 0), getCodeFor('abjad'), shadda, 1)
+							detailarray = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda, 1)
 								.split('/')
 						} else {
 							detailarray = abjad(elements, getCodeFor('abjad'), shadda, 1)
@@ -2130,13 +2132,13 @@ function calculations(identity) {
 		if (identity == 'bastet' || identity == 'reload') {
 			var guide = "";
 			if (languagebastet == "arabic") {
-				guide = SettingForced('elementguide', 'bastelementguide')
+				guide = getSetting(SettingForced('elementguide', 'bastelementguide'))
 			} else if (languagebastet == "hebrew") {
 				guide = "HEBREW"
 			} else if (languagebastet == "turkce") {
 				guide = "TURKCE"
 			}
-			var shadda = parseFloat(SettingForced('abjadshadda', 'bastetshadda'));
+			var bastshadda = parseFloat(getSetting(SettingForced('abjadshadda', 'bastetshadda')));
 			jQuery("#sourcetobastet")[0].setAttribute('latest', jQuery("#sourcetobastet")[0].getAttribute('latest'));
 			jQuery("#sourcetobastet")[0].setAttribute('latesttotal', jQuery("#sourcetobastet")[0].getAttribute('latesttotal'));
 			jQuery("#sourcetobastet")[0].setAttribute('sourcetoabjad', jQuery("#sourcetoabjad")[0].getAttribute('latest'));
@@ -2159,11 +2161,11 @@ function calculations(identity) {
 				processset = [jQuery("#sourcetobastet")[0].getAttribute('latesttotal')]
 			}
 			if (getSetting('sourcebastet') == 'entereddatas') {
-				processset = jQuery("#sourcetobastet")[0].getAttribute('sourcetoabjad')
+				processset = jQuery("#sourcetoabjad")[0].getAttribute('latest')
 					.split(',')
 			}
 			if (getSetting('sourcebastet') == 'datastotal') {
-				processset = [sumofarray(jQuery("#sourcetobastet")[0].getAttribute('sourcetoabjad')
+				processset = [sumofarray(jQuery("#sourcetoabjad")[0].getAttribute('latest')
 					.split(','))]
 			}
 			if (getSetting('bastetdetail') == '0') {
@@ -2174,7 +2176,11 @@ function calculations(identity) {
 						.trim() != "") {
 						if ((getSetting('sourcebastet') == 'entereddatas') || (getSetting('sourcebastet') == 'datastotal')) {
 							if (setDataType(5) < 3) {
-								processed = processset[l].toString()
+								if (getSetting('purify') == 'purify') {
+									processed = saf(processset[l].toString(), 0, bastshadda)
+								} else {
+									processed = processset[l].toString()
+								}
 							}
 							if (setDataType(5) == 3) {
 								processed = processset[l]
@@ -2183,7 +2189,10 @@ function calculations(identity) {
 								processed = HintToArab(processset[l])
 							}
 							if (setDataType(5) < 3) {
-								elements = getElements(processed, shadda, guide)
+								if (getSetting('purify') == 'purify') {
+									processed = saf(processed, 0, bastshadda)
+								}
+								elements = getElements(processed, bastshadda, guide)
 							} else {
 								elements = parseFloat(processed)
 							}
@@ -2196,17 +2205,17 @@ function calculations(identity) {
 								break;
 							case false:
 							default:
-								baster = parseFloat(abjad(elements, getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')));
+								baster = parseFloat(abjad(elements, getCodeFor('bastet'), bastshadda));
 								if (getSetting('bastetaddquantity') == "1") {
-									baster += parseFloat(abjad(elements, 5, SettingForced('abjadshadda', 'bastetshadda')))
+									baster += parseFloat(abjad(elements, 5, bastshadda))
 								}
 						}
 						istintak = nutket(baster, languagebastet);
 						for (let rep = 0; rep < getSetting('bastetrepetation'); rep += 1) {
 							if (getSetting('usebastetelement') == '1') {
-								baster = parseFloat(abjad(getElements(istintak, shadda, guide), getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda'))) + parseFloat(abjad(getElements(istintak, shadda, guide), 5, SettingForced('abjadshadda', 'bastetshadda')));
+								baster = parseFloat(abjad(getElements(saf(istintak, 0, bastshadda), bastshadda, guide), getCodeFor('bastet'), bastshadda)) + parseFloat(abjad(getElements(istintak, bastshadda, guide), 5, bastshadda));
 							} else {
-								baster = parseFloat(abjad(istintak, getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda'))) + parseFloat(abjad(istintak, 5, SettingForced('abjadshadda', 'bastetshadda')))
+								baster = parseFloat(abjad(istintak, getCodeFor('bastet'), bastshadda)) + parseFloat(abjad(istintak, 5, bastshadda))
 							}
 							istintak = nutket(baster, languagebastet);
 						}
@@ -2244,7 +2253,11 @@ function calculations(identity) {
 						.trim() != "") {
 						if ((getSetting('sourcebastet') == 'entereddatas') || (getSetting('sourcebastet') == 'datastotal')) {
 							if (setDataType(5) < 3) {
-								processed = processset[l].toString()
+								if (getSetting('purify') == 'purify') {
+									processed = saf(processset[l].toString(), 0, bastshadda)
+								} else {
+									processed = processset[l].toString()
+								}
 							}
 							if (setDataType(5) == 3) {
 								processed = processset[l]
@@ -2253,7 +2266,7 @@ function calculations(identity) {
 								processed = HintToArab(processset[l])
 							}
 							if (setDataType(5) < 3) {
-								elements = getElements(processed, shadda, guide)
+								elements = getElements(processed, bastshadda, guide)
 							} else {
 								elements = parseFloat(processed)
 							}
@@ -2269,9 +2282,9 @@ function calculations(identity) {
 								break;
 							case false:
 							default:
-								baster = parseFloat(abjad(elements, getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')));
+								baster = parseFloat(abjad(elements, getCodeFor('bastet'), bastshadda));
 								if (getSetting('bastetaddquantity') == "1") {
-									baster += parseFloat(abjad(elements, 5, SettingForced('abjadshadda', 'bastetshadda')));
+									baster += parseFloat(abjad(elements, 5, bastshadda));
 									bastetdetails += `${pretranslate('', 'Calculated abjad value of ')}${elements} ${pretranslate('ibaresinin ebcedi hesaplandı ve harf miktarı eklenerek', 'and after adding quantity of letters,')} `
 								} else {
 									bastetdetails += `${pretranslate('', 'Calculated abjad value of ')}${elements} ${pretranslate('ibaresinin ebcedi hesaplandı ve', 'and')} `
@@ -2298,15 +2311,15 @@ function calculations(identity) {
 						istintak = nutket(baster, languagebastet);
 						for (let rep = 0; rep < getSetting('bastetrepetation'); rep += 1) {
 							bastetdetails += `<tr ${DisplayIfThere("bastdetailsatir" + entryorder, "bast" + entryorder + "loop" + looporder)} id="bast${entryorder}loop${looporder}"><td>${baster}</td>`;
-							bastetdetails += `<td>${istintak} (${parseFloat(abjad(istintak, getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')))})</td>`;
+							bastetdetails += `<td>${istintak} (${parseFloat(abjad(istintak, getCodeFor('bastet'), bastshadda))})</td>`;
 							if (getSetting('usebastetelement') == '1') {
-								baster = parseFloat(abjad(getElements(istintak, shadda, guide), getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')));
-								baster += parseFloat(abjad(getElements(istintak, shadda, guide), 5, SettingForced('abjadshadda', 'bastetshadda')));
-								bastetdetails += `<td>${getElements(istintak, shadda, guide)} (${parseFloat(abjad(getElements(istintak, shadda, guide), 5, SettingForced('abjadshadda', 'bastetshadda')))}; ${parseFloat(abjad(getElements(istintak, shadda, guide), getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')))})</td>`;
+								baster = parseFloat(abjad(getElements(istintak, bastshadda, guide), getCodeFor('bastet'), bastshadda));
+								baster += parseFloat(abjad(getElements(istintak, bastshadda, guide), 5, bastshadda));
+								bastetdetails += `<td>${getElements(istintak, bastshadda, guide)} (${parseFloat(abjad(getElements(istintak, bastshadda, guide), 5, bastshadda))}; ${parseFloat(abjad(getElements(istintak, bastshadda, guide), getCodeFor('bastet'), bastshadda))})</td>`;
 							} else {
-								baster = parseFloat(abjad(istintak, getCodeFor('bastet'), SettingForced('abjadshadda', 'bastetshadda')));
-								baster += parseFloat(abjad(istintak, 5, SettingForced('abjadshadda', 'bastetshadda')));
-								bastetdetails += `<td>${pretranslate('tümü', 'all')} (${parseFloat(abjad(istintak, 5, SettingForced('abjadshadda', 'bastetshadda')))})</td>`;
+								baster = parseFloat(abjad(istintak, getCodeFor('bastet'), bastshadda));
+								baster += parseFloat(abjad(istintak, 5, bastshadda));
+								bastetdetails += `<td>${pretranslate('tümü', 'all')} (${parseFloat(abjad(istintak, 5, bastshadda))})</td>`;
 							}
 							bastetdetails += `</tr>`;
 							bastetdetailview += "\'bast" + entryorder + "loop" + looporder + "\'";
