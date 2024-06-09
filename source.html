@@ -2002,7 +2002,7 @@ function calculations(identity) {
 							elements = processed
 						}
 						if (getSetting('purify') == 'purify') {
-							sum = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda)
+							sum = abjad(saf(elements, "", shadda), getCodeFor('abjad'), shadda)
 						} else {
 							sum = abjad(elements, getCodeFor('abjad'), shadda)
 						}
@@ -2070,12 +2070,12 @@ function calculations(identity) {
 							elements = processed
 						}
 						if (getSetting('purify') == 'purify') {
-							sum = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda)
+							sum = abjad(saf(elements, "", shadda), getCodeFor('abjad'), shadda)
 						} else {
 							sum = abjad(elements, getCodeFor('abjad'), shadda)
 						}
 						if (getSetting('purify') == 'purify') {
-							detailarray = abjad(saf(elements, 0, shadda), getCodeFor('abjad'), shadda, 1)
+							detailarray = abjad(saf(elements, "", shadda), getCodeFor('abjad'), shadda, 1)
 								.split('/')
 						} else {
 							detailarray = abjad(elements, getCodeFor('abjad'), shadda, 1)
@@ -2177,7 +2177,7 @@ function calculations(identity) {
 						if ((getSetting('sourcebastet') == 'entereddatas') || (getSetting('sourcebastet') == 'datastotal')) {
 							if (setDataType(5) < 3) {
 								if (getSetting('purify') == 'purify') {
-									processed = saf(processset[l].toString(), 0, bastshadda)
+									processed = saf(processset[l].toString(), "", bastshadda)
 								} else {
 									processed = processset[l].toString()
 								}
@@ -2190,7 +2190,7 @@ function calculations(identity) {
 							}
 							if (setDataType(5) < 3) {
 								if (getSetting('purify') == 'purify') {
-									processed = saf(processed, 0, bastshadda)
+									processed = saf(processed, "", bastshadda)
 								}
 								elements = getElements(processed, bastshadda, guide)
 							} else {
@@ -2213,7 +2213,7 @@ function calculations(identity) {
 						istintak = nutket(baster, languagebastet);
 						for (let rep = 0; rep < getSetting('bastetrepetation'); rep += 1) {
 							if (getSetting('usebastetelement') == '1') {
-								baster = parseFloat(abjad(getElements(saf(istintak, 0, bastshadda), bastshadda, guide), getCodeFor('bastet'), bastshadda)) + parseFloat(abjad(getElements(istintak, bastshadda, guide), 5, bastshadda));
+								baster = parseFloat(abjad(getElements(saf(istintak, "", bastshadda), bastshadda, guide), getCodeFor('bastet'), bastshadda)) + parseFloat(abjad(getElements(istintak, bastshadda, guide), 5, bastshadda));
 							} else {
 								baster = parseFloat(abjad(istintak, getCodeFor('bastet'), bastshadda)) + parseFloat(abjad(istintak, 5, bastshadda))
 							}
@@ -2254,7 +2254,7 @@ function calculations(identity) {
 						if ((getSetting('sourcebastet') == 'entereddatas') || (getSetting('sourcebastet') == 'datastotal')) {
 							if (setDataType(5) < 3) {
 								if (getSetting('purify') == 'purify') {
-									processed = saf(processset[l].toString(), 0, bastshadda)
+									processed = saf(processset[l].toString(), "", bastshadda)
 								} else {
 									processed = processset[l].toString()
 								}
