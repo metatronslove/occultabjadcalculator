@@ -36,3 +36,4 @@ It is very easy to make an instant translating to any language using html
 attributes and JavaScript.
 
 Sample site is https://abdil.one/occult-abjad-calculator
+Also there https://metatronslove.github.io/occultabjadcalculator/ is
