@@ -37,3 +37,5 @@ attributes and JavaScript.
 
 Sample site is https://abdil.one/occult-abjad-calculator
 Also there https://metatronslove.github.io/occultabjadcalculator/ is
+
+If you are someone like listed below you would better do checking these codes and my repositories
