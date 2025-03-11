@@ -35,7 +35,7 @@ between those blocks. Publish the page.
 It is very easy to make an instant translating to any language using html
 attributes and JavaScript.
 
-Sample site is https://abdil.one/occult-abjad-calculator
+Sample site is https://one.fanclub.rocks/occult-abjad-calculator
 Also there https://metatronslove.github.io/occultabjadcalculator/ is
 
 If you are someone like listed below you would better do checking these codes and my repositories
