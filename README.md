@@ -81,3 +81,18 @@ Ideological Spectrum: Likely to approach the tools as a form of entertainment or
 Personality Traits: Skeptical of mainstream narratives, drawn to uncovering hidden truths or patterns in systems.
 Occupations: Independent researchers, bloggers, or activists.
 Ideological Spectrum: May have a more radical or unconventional worldview, using the tools to support alternative theories or narratives.
+
+## 🎁 Destek Ol
+**Çalışmalarımın sürmesine olanak sağlamak için bağışta bulunabilirsiniz.**  
+*Lütfen bağış yapmadan önce en az iki kere düşünün çünkü geri ödemeler için ayıracak hiç zamanım ve imkanım yok.*  
+**Katkılarınız için paylaştıklarımı kullanan herkes adına teşekkürlerimi kabul edin.**
+
+## 🎁 Support Me
+**You can support me to keep my projects alive.**  
+*Please think twice before donating because I have no time or means to handle refunds.*  
+**On behalf of everyone who uses what I share, I accept your thanks for your contributions.**
+
+[![Papara ile Destekle](https://img.shields.io/badge/Bağış%20Yap-%E2%9D%A4-blue)](https://ppr.ist/1T9dx8tUT)
+[![Donate using Papara](https://img.shields.io/badge/Donate-%E2%9D%A4-blue)](https://ppr.ist/1T9dx8tUT)
+
+[![Papara ile Desteklen](docs/1513592797QR.png)](https://ppr.ist/1T99dYF5X)
